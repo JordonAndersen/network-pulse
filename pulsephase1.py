@@ -15,12 +15,9 @@ results = subprocess.run(ping_cmd, stdout= subprocess.DEVNULL, stderr=subprocess
 #seeing what the results are printed and args bing passed. Used for debugging as well during learning  No need to run everytime. 
 # print(results)
 
-#check the return code to see if its 0, if 0 it is successful
+ #check the return code to see if its 0, if 0 it is successful
 if results.returncode == 0:
     print(f"Ping to {target_ip} successful.")
 else:
     print(f"Ping to {target_ip} failed.")
-
-
-
-
+    

@@ -31,21 +31,3 @@ for name, ip in multiple_target_ip.items():
         print(f"{pulse_time}: Ping to {name}, {ip} successful")
     else:
         print(f"Ping to {name}, {ip} failed.")
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
