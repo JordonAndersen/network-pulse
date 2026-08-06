@@ -1,4 +1,4 @@
-#phase 3 expand the code so it automatically checks ip address. 
+#phase 4 expand the code to check ip address on the network. 
 
 #import subprocess libaray to talk with the command line. 
 import subprocess
@@ -8,16 +8,19 @@ import datetime as dt
 import time
 #importing ipaddress module to scan the ips on the net. 
 import ipaddress
-
+#creating a var to hope the ip_network
 ip_test = ipaddress.ip_network("192.168.1.0/24")
 
-for ip in ip_test.hosts():
-    print(ip)
 
 
-#phase 1 we used a var to hold one static IP address (target_ip = '8.8.8.8'). Here we will use a dictionary to hold multiple IP's (the values) and give the IP a name (the keys). For learning purposes I will be using Google, CloudFlare, and Quad9 
+multiple_target_ip = [""]
 
-multiple_target_ip = {"Google" : "8.8.8.8", "Cloudflare" : "1.1.1.1", "Quad9" : "9.9.9.9" }
+for ips in ip_test.hosts():
+    ip_strings = str(ips)
+    print(ip_strings)
+    multiple_target_ip.append(ip_strings)
+    
+print(multiple_target_ip)
 
 while True:
     #Try and except for ending the program 
@@ -25,7 +28,7 @@ while True:
         #creating time stamp
         pulse_time = dt.datetime.now()
         #interating over the dictionary. 
-        for name, ip in multiple_target_ip.items():   
+        for ip in multiple_target_ip:   
             #creating a ping command to test connectivity to the target ip address.
             ping_cmd = ['ping','-c','1',ip]
 
@@ -34,9 +37,9 @@ while True:
             
             #check the return code to see if its 0, if 0 it is successful
             if results.returncode == 0:
-                print(f"{pulse_time}: Ping to {name}, {ip} successful")
+                print(f"{pulse_time}: Ping to {ip} successful")
             else:
-                    print(f"Ping to {name}, {ip} failed.")
+                    print(f"Ping to {ip} failed.")
 
         #add sleep so it doesn't run over and over again. 
         time.sleep(30) 
