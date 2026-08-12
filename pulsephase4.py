@@ -13,14 +13,13 @@ ip_test = ipaddress.ip_network("192.168.1.0/24")
 
 
 
-multiple_target_ip = [""]
+multiple_target_ip = []
 
 for ips in ip_test.hosts():
-    ip_strings = str(ips)
-    print(ip_strings)
+    ip_strings = str(ips)   
     multiple_target_ip.append(ip_strings)
     
-print(multiple_target_ip)
+
 
 while True:
     #Try and except for ending the program 
